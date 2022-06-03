@@ -1,0 +1,10 @@
+<!--  모든 웹 구성요소에 표시되는 공유 리소스 정의, view와 관련되지 않은 객체를 정의.
+	  예를 들어 Service, Repository(DAO), DB등 비즈니스 로직과 관련된 설정을 해주는 곳
+ -->
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+</beans>
