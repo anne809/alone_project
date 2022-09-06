@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+  <configuration>
+	<typeAliases> <!--  comment.xml과 연결되어있습니다. -->
+		<typeAlias alias="member" type="com.toy.mytoy.domain.Member"/>
+		<typeAlias alias="board" type="com.toy.mytoy.domain.Board"/>
+	</typeAliases>
+
+	<mappers>
+		<mapper resource = "sql/member.xml"/>
+		<mapper resource = "sql/board.xml"/>
+		<mapper resource = "sql/comment.xml"/>
+	</mappers>
+
+</configuration>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  SQL 맵퍼 파일은 xml이기 때문에 제일 먼저 xml 선언이 옵니다. -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Comments">
+
+<!--  댓글 등록하기 -->
+	<insert id="insert" parameterType="C">
+		insert into comments
+		value(com_seq.nextval, #{id}, #{content}, sysdate, #{board_num})
+	</insert>
+
+<!--  댓글 수정 -->
+	<update id="update" parameterType="C">
+		update commentx
+		set content = #{content}
+		where num = #{num}
+	</update>
+
+<!--  댓글 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete comment
+		where num = #{num}
+	</delete>
+
+<!--  댓글 목록(내용) 가져오기 : rownum 불러온 행에 순서 매기는 기본임시컬럼-->
+	<select id = "getList" resultType="C" parameterType="map">
+		<!--  3. 시작행(1) ~ 종료행 임시컬럼 갯수 조회해서 결과 출력 -->
+		select *
+			<!-- 2. 최신댓글에 rnum 순서 매겨서 정렬  -->
+			(select rownum rnum, num, id, content, reg_date
+				from <!-- 1. comment 테이블에서 글번호 같은 댓글을 최신순으로 정렬 -->
+				(select num, id, content, reg_date
+					from comments
+					where board_num = #{board_num}
+					order by reg_date desc
+				)
+			 )
+		where rnum between #{start} and #{end}
+		
+	</select>
+	
+<!--  댓글 개수 조회 -->
+	<select id="count" resultType="int" parameterType="int">
+		select count(*)
+			from comments
+				where board_num = #{board_num}
+	</select>
+	
+</mapper>
+	

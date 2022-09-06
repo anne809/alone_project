@@ -1,0 +1,17 @@
+DROP TABLE COMMENTS;
+
+CREATE TABLE COMMENTS(
+	NUM				 NUMBER		 		PRIMARY KEY,
+	ID 				 VARCHAR2(50 BYTE) 	REFERENCES MEMBER(ID),
+	CONTENT 	     VARCHAR2(200),
+	REG_DATE		 DATE,
+	BOARD_NUM        NUMBER 			REFERENCES BOARD(BOARD_NUM)
+					 ON DELETE CASCADE
+	);
+						
+						--ON DELETE CASCADE : 원문글 삭제하면 이 원문글을 참조하는 댓글도 삭제됩니다.--
+						
+	CREATE SEQUENCE COM_SEQ;
+	
+	select*
+	from comments

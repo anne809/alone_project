@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+
+	*** 순서만들기 ***
+	* Controller (presentation layer, MVC)
+	* Service (Business layer) , 쿼리 주고받기전 가공하는 중간단계
+	* Dao (Data access layer) 
+	=====  VO(모두와 주고받음 , domain object)
+	
+1. 	VO
+	
+	  mytoy/domain (사용할 기본 테이블도 생성 필요)
+   1) 사용할 domain 만들기
+  	  ex: Member.java 
+
+
+2. DAO (Data Access layer)
+   	mytoy/dao >>> 쿼리 다루는 xml로 보내는 단계
+    DAO 생성 (ex: CommentDAO.java)
+  
+ resources > sql > xxx.xml 파일 만들기
+   실제로 사용할 쿼리 내용 작성
+
+ resources > util > SqlMapConfig.xml
+	위에서 만든 xml파일 매퍼로 등록
+	
+3. Service (Business layer)
+    mytoy/service  >>> SERVICE 계층, DAO 호출 및 전달값 가공하는 곳 = 비지니스 로직
+   1) interface 생성 (ex: CommentService.java) - 구현 기능 목록
+   2) interface 상속받는 Impl 생성 (ex: CommentServiceImpl.java) - 기능 구현체 클래스
+   
+4. Controller (MVC, presentation layer)
+	mytoy/Controller
+	1) CommentController.java
+
+ -->

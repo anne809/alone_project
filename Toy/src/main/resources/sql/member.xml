@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--  DAO에서 넘어옵니다.  -->
+<mapper namespace="Members">
+    
+    <!-- 멤버십 가입 -->
+ 	<insert id="insert" parameterType="member">
+        insert into member(ID,PASSWORD,EMAIL,COUNTRY,JOINDATE,MEMBERCODE)
+   		values
+         (#{id}, #{password}, #{email}, #{country}, TO_DATE(SYSDATE,'YYYY-MM-DD'), SEQ_NEWMEMBERCODE.nextval) 
+   </insert>
+   
+   <!-- 멤버십 가입 폼 : 이메일 중복 체크 -->
+   <select id="emailcheck" resultType="member" parameterType="String">
+   		select *
+   		from member
+   		where email = #{email}
+   </select>
+   
+   <!-- 멤버십 가입 폼 : id 중복 체크  -->
+    <select id="idcheck" resultType="member" parameterType="String">
+   		select *
+   		from member
+   		<!-- where email = #{email}-->
+   		where id = #{id}
+   </select>
+   <!-- 로그인 : id나 email 존재하는지 체크 -->
+    <select id="isEmailOrId" resultType="member" parameterType="String">
+   		select *
+   		from member
+   		<!-- where email = #{email}-->
+   		where id = #{id} or email = #{id}
+   </select>
+   
+    <select id="EmpCheck" resultType="member" parameterType="String">
+      select *
+      from member 
+      where id = #{id} or email = #{id}
+   </select>
+   
+</mapper>
+    
